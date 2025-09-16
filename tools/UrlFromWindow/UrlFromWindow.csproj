@@ -1,11 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0-windows10.0.17763.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <!-- Use net8; easier to get the right targeting pack on Actions -->
+    <TargetFramework>net8.0-windows</TargetFramework>
+
+    <!-- You don't actually need WPF/WinForms for UIA; either can be false -->
+    <UseWPF>false</UseWPF>
     <UseWindowsForms>false</UseWindowsForms>
-    <UseWPF>true</UseWPF>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 </Project>
