@@ -79,7 +79,7 @@ export type MacOSOwner = {
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export type MacOSResult = {
-	platform: 'macos';
+	platform: "macos";
 
 	owner: MacOSOwner;
 
@@ -90,11 +90,11 @@ export type MacOSResult = {
 } & BaseResult;
 
 export type LinuxResult = {
-	platform: 'linux';
+	platform: "linux";
 } & BaseResult;
 
 export type WindowsResult = {
-	platform: 'windows';
+	platform: "windows";
 
 	/**
 	Window content position and size, which excludes the title bar, menu bar, and frame.
@@ -105,6 +105,11 @@ export type WindowsResult = {
 		width: number;
 		height: number;
 	};
+
+	/**
+	url of the active browser tab when owner is a supported browser (chrome/edge/firefox).
+	*/
+	url?: string;
 } & BaseResult;
 
 export type Result = MacOSResult | LinuxResult | WindowsResult;
