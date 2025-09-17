@@ -89,6 +89,7 @@ class Program
     static bool IsUrlLike(string s)
     {
         if (string.IsNullOrWhiteSpace(s)) return false;
+
         if (s.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
             s.StartsWith("https://", StringComparison.OrdinalIgnoreCase) ||
             s.StartsWith("about:", StringComparison.OrdinalIgnoreCase) ||
@@ -97,8 +98,14 @@ class Program
             s.StartsWith("view-source:", StringComparison.OrdinalIgnoreCase))
             return true;
 
-        if (s.Contains(' ')) return false;
-        var domainish = new Regex(@"^[a-z0-9\-]+(\.[a-z0-9\-]+)+(:\d+)?(/.*)?$", RegexOptions.IgnoreCase);
+        // Bare domain heuristic (no spaces)
+        if (s.IndexOf(' ') >= 0) return false;
+        // At least one dot
+        if (s.IndexOf('.') < 0) return false;
+
+        var domainish = new System.Text.RegularExpressions.Regex(
+            @"^[a-z0-9\-]+(\.[a-z0-9\-]+)+(:\d+)?(/.*)?$",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
         return domainish.IsMatch(s);
     }
 
@@ -111,7 +118,10 @@ class Program
             s.StartsWith("view-source:", StringComparison.OrdinalIgnoreCase))
             return s;
 
-        if (s.Contains('.') && !s.Contains(' ')) return "https://" + s;
+        // If it looks like a bare domain and has no spaces, prefix https://
+        if (s.IndexOf('.') >= 0 && s.IndexOf(' ') < 0)
+            return "https://" + s;
+
         return s;
     }
 }
