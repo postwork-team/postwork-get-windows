@@ -1,5 +1,5 @@
 {
-	"name": "postwork-get-windows-2.3",
+	"name": "postwork-get-windows-2.4",
 	"version": "9.2.3",
 	"description": "Get metadata about the active window and open windows (title, id, bounds, owner, URL, etc)",
 	"license": "MIT",
