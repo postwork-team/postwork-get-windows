@@ -9,6 +9,7 @@ window.js can run.
 
 To make changes to the script, you need to change the Program.cs file and then run the build-urlfromwindow.yml file to build the exe file, then replace the existing exe file in the bin/windows folder.
 
+Note! We are keeping the version the same because we don't want it to go out of date with child libraries.
 ---
 
 Works on macOS 10.14+, Linux ([note](#linux-support)), and Windows 7+.
